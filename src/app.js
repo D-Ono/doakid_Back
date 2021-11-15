@@ -1,11 +1,16 @@
 const express = require('express');
-
+const cors = require('cors');
 const app = express();
+const routes = require('./routes');
 
-app.listen(3000, () => 
-	console.log('Servidor iniciado na porta 3000')
-);
+app.use(express.json());
 
-app.get('/', (req, res) => 
-    res.send('<h1 style="color: blue">CRIANDO UM SERVIDOR COM EXPRESS.JS</h1>')
-);
+app.use((req, res, next) => {
+    app.use(cors());
+    next();
+  });
+//app.use(cors());
+//app.use('/item', escolas);
+app.use(routes);
+
+module.exports = app;
