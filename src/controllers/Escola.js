@@ -1,8 +1,11 @@
 const db = require('../connectDB');
 
 module.exports = {
+    login:(dt, callback) => {
+        return db.query("SELECT * FROM escola where email_escola=? AND senha=?", [dt.email_escola, dt.senha], callback);
+    },
     getAll:(callback) => { 
-        return db.query("Select * from escola inner join telefoneEscola",callback);
+        return db.query("Select * from escola inner join telefoneEscola ON escola.cod_escola=telefoneEscola.cod_escola",callback);
     },
 
     getByCodigo:(cod_escola,callback) => {

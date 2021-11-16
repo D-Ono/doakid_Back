@@ -17,6 +17,18 @@ routes.get('/', (req, res) => {
 /***************************************************************************/
 /***************************       ESCOLA      *****************************/
 /***************************************************************************/
+
+routes.post('/escola/login', (req, res) => {
+    Escola.login(req.body,(err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+});
+
 routes.get('/escola/list', (req, res) => {
   if(!req.body.cod_escola){
       Escola.getAll((err, rows) => {
