@@ -21,6 +21,7 @@ CREATE TABLE `escola` (
   `cod_escola` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `nome_escola` VARCHAR(25) NOT NULL,
   `email_escola` VARCHAR(30) NOT NULL UNIQUE,
+  `senha` VARCHAR(10) NOT NULL, 
   `rua_escola` VARCHAR(50) NOT NULL,
   `numero_rua` INT NOT NULL,
   `bairro_escola` VARCHAR(50) NOT NULL,
@@ -61,7 +62,8 @@ create table `telefoneEscola` (
 CREATE TABLE `item` (
   `cod_item` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `nome_item` VARCHAR(25) NOT NULL,
-  `descricao_item` VARCHAR(200) NOT NULL,
+  `url` VARCHAR(250) NOT NULL,
+  `descricao_item` VARCHAR(150) NOT NULL,
   `data_registro` DATE NOT NULL,
   PRIMARY KEY (`cod_item`)
 );
@@ -149,11 +151,11 @@ INSERT INTO `familia`(`cod_familia`, `email_familia`, `nome`, `sobrenome`)  VALU
 -- -----------------------------------------------------
 -- INSERÇÃO NA TABELA `escola` - 5 TUPLAS 
 -- -----------------------------------------------------
-INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (1, 'Escola Fernando Costa', 'fernando_costa@gmail.com', 'Washigton Luiz', 1200, 'Centro', '08:00:00', '17:00:00');
-INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (2, 'Escola Marrey Junior', 'marrey_junior@gmail.com', 'Coronel Albino', 500, 'São Judas Tadeu', '08:00:00', '17:00:00');
-INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (3, 'Escola Hugo Miele', 'hugo_miele@gmail.com', 'Fagundes Varella', 1149, 'Vila Esperança', '08:00:00', '17:00:00');
-INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (4, 'Escola Anglo', 'anglo_prudente@gmail.com', 'Jose Bongiovani', 560, 'Jardim Esplanada', '08:00:00', '17:00:00');
-INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (5, 'Escola Adventista', 'adventista_prudente@gmail.com', 'Washigton Luiz', 356, 'Centro', '08:00:00', '17:00:00');
+INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `senha`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (1, 'Escola Fernando Costa', 'fernando_costa@gmail.com', "aaa", 'Washigton Luiz', 1200, 'Centro', '08:00:00', '17:00:00');
+INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `senha`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (2, 'Escola Marrey Junior', 'marrey_junior@gmail.com', "bbb", 'Coronel Albino', 500, 'São Judas Tadeu', '08:00:00', '17:00:00');
+INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `senha`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (3, 'Escola Hugo Miele', 'hugo_miele@gmail.com', "ccc", 'Fagundes Varella', 1149, 'Vila Esperança', '08:00:00', '17:00:00');
+INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `senha`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (4, 'Escola Anglo', 'anglo_prudente@gmail.com', "123", 'Jose Bongiovani', 560, 'Jardim Esplanada', '08:00:00', '17:00:00');
+INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `senha`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) VALUES (5, 'Escola Adventista', 'adventista_prudente@gmail.com', "qqq", 'Washigton Luiz', 356, 'Centro', '08:00:00', '17:00:00');
 
 -- -----------------------------------------------------
 -- INSERÇÃO NA TABELA `telefoneFamilia` - 5 TUPLAS 
@@ -176,35 +178,35 @@ INSERT INTO `telefoneEscola`(`numero`, `cod_escola`) VALUES ('(18)3223-1245', 5)
 -- -----------------------------------------------------
 -- INSERÇÃO NA TABELA `item` - 25 TUPLAS 
 -- -----------------------------------------------------
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (1, 'O Patinho Feio', 'Livro infantil', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (6, 'O Rato Roeu.', 'Livro educativo', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (7, 'Gato pra cá, rato pra lá', 'Livro infantil', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (8, 'Papai!', 'Livro infantil', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (9, 'O ratinho, o morango vermelho maduro e o grande urso esfomeado!', 'Livro infantil', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (1, 'O Patinho Feio', 'https://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=1853086133', 'Livro infantil', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (6, 'Cabe na Mala.', 'https://www.moderna.com.br/data/files/15/83/3D/1E/8BACD310507C0AD328A8A8A8/9788516083397.jpg', 'Livro educativo', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (7, 'Gato pra cá, rato pra lá', 'Livro infantil', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (8, 'Papai!', 'Livro infantil', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (9, 'O ratinho, o morango vermelho maduro e o grande urso esfomeado!', 'Livro infantil', '2021-08-05');
 
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (2, 'Caminhão de bombeiro', 'Caminhão de brinquedo que espirra água', '2021-07-29');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (10, 'Boneca', 'Boneca com mamadeira e fraldas', '2021-07-29');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (11, 'Kit de cozinha', 'Panelas, pratos e talheres de plástico', '2021-07-29');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (12, 'Ferramentas', 'Ferramentas diversas de plástico', '2021-07-29');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (13, 'Quebra-cabeça', 'Quebra-cabeça da Frozen com peças em MDF', '2021-07-29');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (2, 'Caminhão de bombeiro', 'https://cf.shopee.com.br/file/8b00c4f9093f493f6ebdd36b8281008d_tn', 'Caminhão de brinquedo que espirra água', '2021-07-29');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (10, 'Boneca', 'https://d3ddx6b2p2pevg.cloudfront.net/Custom/Content/Products/10/09/1009621_boneca-multikids-baby-wow-analu-rosa-br732_m7_636810322265700895', 'Boneca com mamadeira e fraldas', '2021-07-29');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (11, 'Kit de cozinha', 'Panelas, pratos e talheres de plástico', '2021-07-29');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (12, 'Ferramentas', 'Ferramentas diversas de plástico', '2021-07-29');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (13, 'Quebra-cabeça', 'Quebra-cabeça da Frozen com peças em MDF', '2021-07-29');
 
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (3, 'Body', 'Body azul aveludado em ótimo estado', '2021-08-03');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (14, 'Macacão', 'Macacão de verão', '2021-08-03');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (15, 'Camiseta', 'Camiseta da Patrulha Canina', '2021-08-03');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (16, 'Calça', 'Calça de moletom verde', '2021-08-03');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (17, 'Regata', 'Regata branca lisa', '2021-08-03');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (3, 'Body', 'https://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=1627505965', 'Body azul aveludado em ótimo estado', '2021-08-03');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (14, 'Macacão', 'https://img.clasf.com.br/2018/10/29/Macaco-Infantil-Roupas-De-Criana-Beb-Mms-Manga-Longa-20181029025816.1164240015.jpg', 'Macacão de vermelho do M', '2021-08-03');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (15, 'Camiseta', 'Camiseta da Patrulha Canina', '2021-08-03');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (16, 'Calça', 'Calça de moletom verde', '2021-08-03');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (17, 'Regata', 'Regata branca lisa', '2021-08-03');
 
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (4, 'Fralda', 'Fralda Pampers', '2021-08-04');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (18, 'Fralda', 'Fralda Pampers', '2021-08-04');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (19, 'Fralda', 'Fralda MamyPoko', '2021-08-04');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (20, 'Fralda', 'Fralda Turma da Mônica', '2021-08-04');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (21, 'Fralda', 'Fralda MamyPoko', '2021-08-04');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (4, 'Fralda', 'https://static.netshoes.com.br/produtos/fralda-pampers-confort-sec-rn-plus-36-tiras/60/EKV-0014-460/EKV-0014-460_zoom1.jpg?ts=1608149894', 'Fralda Pampers', '2021-08-04');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (18, 'Fralda', 'https://cdn1.staticpanvel.com.br/produtos/15/109268-15.jpg', 'Fralda Pampers', '2021-08-04');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (19, 'Fralda', 'Fralda MamyPoko', '2021-08-04');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (20, 'Fralda', 'Fralda Turma da Mônica', '2021-08-04');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (21, 'Fralda', 'Fralda MamyPoko', '2021-08-04');
 
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (5, 'Tênis', 'Tênis infantil vermelho', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (22, 'Sapatilha', 'Sapatilha verde com gliter', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (23, 'Tênis', 'Tênis esportivo', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (24, 'Chinelo', 'Chinelo havaianas amarelo', '2021-08-05');
-INSERT INTO `item` (`cod_item`, `nome_item`, `descricao_item`, `data_registro`) VALUES (25, 'Galocha', 'Galochas vermelhas do Relâmpago McQueen', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (5, 'Tênis', 'https://img.lojasrenner.com.br/item/552612478/small/5.jpg', 'Tênis infantil vermelho', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (22, 'Sapatilha', 'https://cdnv2.moovin.com.br/cirandinha/imagens/produtos/original/kidy-i8-01502313330-bailarina-c5d5ff792a417653cbc064395a918d70.jpg', 'Sapatilha verde com gliter', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (23, 'Tênis', 'Tênis esportivo', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (24, 'Chinelo', 'Chinelo havaianas amarelo', '2021-08-05');
+INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) VALUES (25, 'Galocha', 'Galochas vermelhas do Relâmpago McQueen', '2021-08-05');
 
 -- -----------------------------------------------------
 -- INSERÇÃO NA TABELA `livro` - 5 TUPLAS 
@@ -257,8 +259,10 @@ SELECT * FROM familia;
 update familia set email_familia="tadeu@gmail.com", nome="jose", sobrenome="maria" where cod_familia=1;
 SELECT * FROM escola;
 SELECT * FROM telefoneEscola;
+SELECT * FROM escola where email_escola='marrey_junior@gmail.com' AND senha='bbb';
 SELECT * FROM item;
 Select * from roupa inner join item ON roupa.cod_item = item.cod_item;
+Select * from escola inner join telefoneEscola ON escola.cod_escola=telefoneEscola.cod_escola;
 SELECT * FROM brinquedo;
 SELECT * FROM fralda;
 SELECT * FROM livro;
