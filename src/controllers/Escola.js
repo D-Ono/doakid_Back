@@ -13,9 +13,7 @@ module.exports = {
     },
 
     add:( dt ,callback) => {
-        db.query("Insert into telefoneEscola values(?,?)", [ dt.numero, dt.cod_escola],callback);
-        db.query("Insert into escola values(?,?,?,?,?,?,?,?)", [ dt.cod_escola, dt.nome_escola, dt.email_escola,dt.rua_escola, dt.numero_rua, dt.bairro_escola, dt.horario_funcionamento_inicio, dt.horario_funcionamento_fim],callback);
-        return 1;
+        return db.query("call AddSchool (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [dt.codigoEscola, dt.nome, dt.email, dt.senha, dt.rua, dt.numero, dt.bairro, dt.inicio, dt.final, dt.numero] ,callback);
     },
     delete:(cod_escola,callback) => {
         return db.query("delete telefoneEscola, escola from escola INNER JOIN telefoneEscola where telefoneEscola.cod_escola= escola.cod_escola",[cod_escola],callback);

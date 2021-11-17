@@ -10,7 +10,7 @@ module.exports = {
     },
 
     add:( dt ,callback) => {
-        return db.query("Insert into livro values(?,?,?,?)", [ dt.cod_item, dt.email_familia, dt.nome,dt.sobrenome],callback);
+        return db.query("call AddShoes (?, ?, ?, ?, ?, ?, ?)", [ dt.codigoGeral, dt.nome, dt.url,dt.descricao, dt.data, dt.codigoItem, dt.info],callback);
     },
     delete:(cod_item,callback) => {
         return db.query("delete from livro where cod_item=?",[cod_item],callback);

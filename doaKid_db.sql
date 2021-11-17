@@ -7,10 +7,11 @@ use doakid;
 -- TABELA `familia`
 -- -----------------------------------------------------
 CREATE TABLE `familia` (
-  `cod_familia` INT NOT NULL AUTO_INCREMENT UNIQUE,
-  `email_familia` VARCHAR(30) NOT NULL UNIQUE,
-  `nome` VARCHAR(30) NOT NULL,
-  `sobrenome` VARCHAR(30) NOT NULL,
+	`cod_familia` INT NOT NULL AUTO_INCREMENT UNIQUE,
+	`email_familia` VARCHAR(30) NOT NULL UNIQUE,
+	`nome` VARCHAR(30) NOT NULL,
+	`sobrenome` VARCHAR(30) NOT NULL,
+	`senha` VARCHAR(10) NOT NULL, 
   PRIMARY KEY (`cod_familia`)
 );
 
@@ -270,11 +271,55 @@ SELECT * FROM sapato;
 SELECT * FROM roupa;
 
 DELIMITER $$
+
+CREATE PROCEDURE AddUser (codigoUsuario INT, Nome VARCHAR(30), Sobrenome VARCHAR(30), email VARCHAR(30), senha VARCHAR(10),  numeroTelefone VARCHAR(14))
+BEGIN
+	INSERT INTO `familia`(`cod_familia`, `email_familia`, `nome`, `sobrenome`, `senha`) values(codigoUsuario, email, Nome, Sobrenome, senha);
+    Insert into `telefoneFamilia`(`numero`, `cod_familia`) values(numeroTelefone, codigoUsuario);
+END$$
+
+CREATE PROCEDURE AddSchool (codigoEscola INT, Nome VARCHAR(25), email VARCHAR(30), senha VARCHAR(10),rua VARCHAR(50), numero int, bairro VARCHAR(50), inicio time, fim time, numeroTelefone VARCHAR(14))
+BEGIN
+	INSERT INTO `escola`(`cod_escola`, `nome_escola`, `email_escola`, `senha`, `rua_escola`, `numero_rua`, `bairro_escola`, `horario_funcionamento_inicio`, `horario_funcionamento_fim`) values(codigoEscola, Nome, email, senha, rua, numero, bairro, inicio, fim);
+    Insert into `telefoneEscola`(`numero`, `cod_escola`) values(numeroTelefone, codigoEscola);
+END$$
+
 CREATE PROCEDURE UpdateSchool (Nome VARCHAR(25), email VARCHAR(30), rua VARCHAR(50), numero int, bairro VARCHAR(50), inicio time, fim time, cod int, numeroTelefone VARCHAR(14))
 BEGIN
 	UPDATE escola set nome_escola=Nome, email_escola=email, rua_escola=rua, numero_rua=numero, bairro_escola=bairro, horario_funcionamento_inicio=inicio, horario_funcionamento_fim=fim where cod_escola=cod;
     UPDATE telefoneEscola set numero=numeroTelefone where cod_escola=cod;
 END$$
 
+CREATE PROCEDURE AddDiaper (codigoItem INT, nome VARCHAR(25), url VARCHAR(250), descricao VARCHAR(150), registro DATE, codigoFralda INT, quantidade INT, tamanho VARCHAR(5))
+BEGIN
+	INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) values(codigoItem, nome, url, descricao, registro);
+    Insert into `fralda` (`cod_item`, `cod_fralda`, `quantidade_fralda`, `tamanho_fralda`) values(codigoItem, codigoFralda, quantidade, tamanho);
+END$$
+
+CREATE PROCEDURE AddToys (codigoItem INT, nome VARCHAR(25), url VARCHAR(250), descricao VARCHAR(150), registro DATE, codigoBrinquedo INT, idade VARCHAR(10))
+BEGIN
+	INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) values(codigoItem, nome, url, descricao, registro);
+    Insert into `brinquedo` (`cod_item`, `cod_brinquedo`, `idade_brinquedo`) values(codigoItem, codigoBrinquedo, idade);
+END$$
+
+CREATE PROCEDURE AddClothes (codigoItem INT, nome VARCHAR(25), url VARCHAR(250), descricao VARCHAR(150), registro DATE, codigoRoupa INT, tamanho VARCHAR(3))
+BEGIN
+	INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) values(codigoItem, nome, url, descricao, registro);
+    Insert into `roupa` (`cod_item`, `cod_roupa`, `tamanho_roupa`) values(codigoItem, codigoRoupa, tamanho);
+END$$
+
+CREATE PROCEDURE AddShoes (codigoItem INT, nome VARCHAR(25), url VARCHAR(250), descricao VARCHAR(150), registro DATE, codigoSapato INT, numeracao INT)
+BEGIN
+	INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) values(codigoItem, nome, url, descricao, registro);
+    Insert into `sapato` (`cod_item`, `cod_sapato`, `numeracao_sapato`) values(codigoItem, codigoSapato, numeracao);
+END$$
+
+CREATE PROCEDURE AddBook (codigoItem INT, nome VARCHAR(25), url VARCHAR(250), descricao VARCHAR(150), registro DATE, codigoLivro INT, idade VARCHAR(10))
+BEGIN
+	INSERT INTO `item` (`cod_item`, `nome_item`, `url`, `descricao_item`, `data_registro`) values(codigoItem, nome, url, descricao, registro);
+    Insert into `livro` (`cod_item`, `cod_livro`, `idade_livro`) values(codigoItem, codigoLivro, idade);
+END$$
+
 DELIMITER ;
+call AddBook (7, 'Gato pra cá, rato pra lá', 'https://images-na.ssl-images-amazon.com/images/I/41fSKtmxySL.jpg', 'Livro infantil que narra um encontro do Gato com um rato', '2021-08-05', '1240', '3-5 anos');
 call UpdateSchool('Marrey', 'mar@gmail.com', 'Albino', 150, 'JUDAS', '08:00:00', '17:00:00', 2, '(18)1111-2123');
