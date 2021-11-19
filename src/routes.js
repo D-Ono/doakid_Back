@@ -87,6 +87,17 @@ routes.put('/escola/update', (req, res, next) => {
 /***************************************************************************/
 /***************************       FAMILIA      ****************************/
 /***************************************************************************/
+routes.post('/familia/login', (req, res) => {
+    Familia.login(req.body,(err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+});
+
 routes.get('/familia/list', (req, res) => {
   if(!req.body.cod_familia){
       Familia.getAll((err, rows) => {
