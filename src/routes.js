@@ -51,18 +51,30 @@ routes.get('/escola/list', (req, res) => {
   }
 });
 
+routes.post('/escola/user/:cod_escola', (req, res) => {
+    Escola.getByCodigo(req.body.cod_escola, (err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+  });
+
 routes.post('/escola/create', (req, res, next) => {
     Escola.add(req.body, (err) => {
         if (err) {
             res.json(err);
         }
         else {
+            console.log(req.body)
             res.json(req.body);
         }
     });
 });
 
-routes.delete('/escola/delete', (req, res, next) => {
+routes.delete('/escola/delete/:cod_escola', (req, res, next) => {
     Escola.delete(req.body.cod_escola, (err, count) => {
         if (err) {
             res.json(err);
@@ -108,20 +120,25 @@ routes.get('/familia/list', (req, res) => {
               res.json(rows);
           }
       });
-  }else {
-      Familia.getByCodigo(req.body.cod_familia, (err, rows) => {
-          if (err) {
-              res.json(err);
-          }
-          else {
-              res.json(rows);
-          }
-      });
   }
 });
 
+routes.post('/familia/user/:cod_familia', (req, res) => {
+
+    Familia.getByCodigo(req.body.cod_familia, (err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+
+  });
+
 routes.post('/familia/create', (req, res, next) => {
   Familia.add(req.body, (err) => {
+      console.log(req.body)
       if (err) {
           res.json(err);
       }
@@ -131,8 +148,8 @@ routes.post('/familia/create', (req, res, next) => {
   });
 });
 
-routes.delete('/familia/delete', (req, res, next) => {
-  Familia.delete(req.query.cod_familia, (err, count) => {
+routes.delete('/familia/delete/:cod_familia', (req, res, next) => {
+  Familia.delete(req.body.cod_familia, (err, count) => {
       if (err) {
           res.json(err);
       }
@@ -178,7 +195,51 @@ routes.get('/item/list', (req, res) => {
         });
     }
   });
+
+  routes.get('/item/openList', (req, res) => {
+    Item.getAllOpen((err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+  });
+
+  routes.get('/item/openListAdmin', (req, res) => {
+    Item.getAllOpenAdmin((err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+  });
+
+  routes.get('/item/closeList', (req, res) => {
+    Item.getAllClose((err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+  });
   
+  routes.get('/item/closeListWithoutUser', (req, res) => {
+    Item.getAllCloseWithoutUser((err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+  });
+
   routes.post('/item/create', (req, res, next) => {
     Item.add(req.body, (err) => {
         if (err) {
@@ -190,6 +251,17 @@ routes.get('/item/list', (req, res) => {
     });
   });
   
+  routes.put('/item/donate', (req, res, next) => {
+    Item.donateItem( req.body, (err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+  });
+
   routes.put('/item/update', (req, res, next) => {
     Item.update( req.body, (err, rows) => {
         if (err) {
@@ -197,6 +269,18 @@ routes.get('/item/list', (req, res) => {
         }
         else {
             res.json(rows);
+        }
+    });
+  });
+
+  routes.delete('/item/delete/:cod_item', (req, res, next) => {
+    
+    Item.delete(req.body.cod_item, (err, count) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(count);
         }
     });
   });

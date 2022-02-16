@@ -10,7 +10,7 @@ module.exports = {
     },
 
     add:( dt ,callback) => {
-        return db.query("call AddClothes (?, ?, ?, ?, ?, ?, ?)", [ dt.codigoGeral, dt.nome, dt.url,dt.descricao, dt.data, dt.codigoItem, dt.info],callback);
+        return db.query("call AddClothes (?, ?, ?, ?, ?, ?, ?, ?)", [ dt.codigoGeral, dt.nome, dt.url,dt.descricao, dt.data, dt.codigoItem, dt.info, dt.cod_Usuario],callback);
     },
     delete:(cod_item,callback) => {
         return db.query("delete from roupa where cod_item=?",[cod_item],callback);

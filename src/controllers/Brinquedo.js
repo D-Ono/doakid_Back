@@ -10,7 +10,7 @@ module.exports = {
     },
 
     add:( dt ,callback) => {
-        return db.query("call AddToys (?, ?, ?, ?, ?, ?, ?);", [ dt.codigoItem, dt.nome, dt.url,dt.descricao, dt.data, dt.codigoGeral, dt.info],callback);
+        return db.query("call AddToys (?, ?, ?, ?, ?, ?, ?, ?);", [ dt.codigoItem, dt.nome, dt.url,dt.descricao, dt.data, dt.codigoGeral, dt.info, dt.cod_Usuario],callback);
     },
     delete:(cod_item,callback) => {
         return db.query("delete item, livro from item inner join livro where item.cod_item=livro.cod_item",[cod_item],callback);

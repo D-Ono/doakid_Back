@@ -9,18 +9,18 @@ module.exports = {
     },
 
     getByCodigo:(cod_familia,callback) => {
-        return db.query("Select * from familia inner join telefoneFamilia where cod_familia=?",[cod_familia],callback);
+        return db.query("Select * from familia, telefoneFamilia where telefoneFamilia.cod_familia=? AND familia.cod_familia=?",[cod_familia, cod_familia],callback);
     },
 
     add:( dt ,callback) => {
-        return db.query("call AddUser (?, ?, ?, ?, ?, ?)", [ dt.cod_familia, dt.nome, dt.sobrenome, dt.email_familia, ,dt.senha, dt.numero],callback);
+        return db.query("call AddUser(?, ?, ?, ?, ?, ?)", [ dt.cod_familia, dt.nome, dt.sobrenome, dt.email_familia, ,dt.senha, dt.numero],callback);
     },
     delete:(cod_familia,callback) => {
-        return db.query("delete from familia where cod_familia=?",[cod_familia],callback);
+        return db.query("call deleteUser (?)",[cod_familia],callback);
     },
 
     update:( dt ,callback ) => {
-        return db.query("update familia set email_familia=?, nome=?, sobrenome=? where cod_familia=?", [ dt.email_familia, dt.nome,dt.sobrenome, dt.cod_familia], callback);
+        return db.query("call UpdateFamily (?, ?, ?, ?, ?, ?)", [ dt.nome, dt.sobrenome, dt.email_familia, dt.numero, dt.novaSenha, dt.userCode], callback);
     }
  
 };
